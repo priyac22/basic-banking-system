@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="contact.css"> 
+</head>
+<body>
+    <div class="navbar">
+        <h1 class="navbar-title">Contact us</h1>
+        <div class="navbar-right">
+          <a href="index.html" class="button">Home</a>
+          <a href="about.html" class="button">About</a>
+          <a href="customer.html" class="button">Transaction</a>
+          <a href="contact.html" class="button">Contact</a>
+        </div>
+      </div>
+  
+
+  <div class="container">
+    <h2>Get in Touch</h2>
+    <p>If you have any questions, feedback, or need assistance, please fill out the form below and we'll get back to you as soon as possible.</p>
+    
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" placeholder="Your email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+    <center>
+      <input type="submit" value="Submit">
+    </center>
+    </form>
+    <br>
+    <div class="confirmation" id="confirmationMessage" style="display: none;">
+        Your message has been sent. Thank you for contacting us!
+      </div>
+  
+      <script>
+        // JavaScript code to handle form submission and show confirmation message
+        document.querySelector('form').addEventListener('submit', function (event) {
+          event.preventDefault(); // Prevent the form from submitting
+  
+          // Show the confirmation message
+          document.getElementById('confirmationMessage').style.display = 'block';
+        });
+
+        // Close the modal when close button is clicked
+      document.querySelector('.close-btn').addEventListener('click', function () {
+        document.getElementById('confirmationModal').style.display = 'none';
+      });
+      </script>
+    
+  </div>
+  <footer>&copy; All rights reserved.</footer>
+</body>
+</html>

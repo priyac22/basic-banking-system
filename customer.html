@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transaction Page</title>
+  <link rel="stylesheet" href="customer.css"> 
+  <script>
+    var slNo = 1;
+
+    function openDialogueBox() {
+      document.getElementById("dialogueBox").style.display = "block";
+    }
+
+    function closeDialogueBox() {
+      document.getElementById("dialogueBox").style.display = "none";
+    }
+
+    function addTransaction(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("nameInput").value;
+      var date = document.getElementById("dateInput").value;
+      var amount = document.getElementById("amountInput").value;
+
+      var table = document.getElementById("transactionTable").getElementsByTagName("tbody")[0];
+      var newRow = table.insertRow();
+
+      var slNoCell = newRow.insertCell(0);
+      var dateCell = newRow.insertCell(1);
+      var nameCell = newRow.insertCell(2);
+      var amountCell = newRow.insertCell(3);
+
+      slNoCell.innerHTML = slNo++;
+      dateCell.innerHTML = date;
+      nameCell.innerHTML = name;
+      amountCell.innerHTML = amount;
+
+      closeDialogueBox();
+      showSuccessMessage();
+      resetForm();
+    }
+
+    function showSuccessMessage() {
+      var alertMessage = document.getElementById("alertMessage");
+      alertMessage.innerHTML = "Transaction successful!";
+      alertMessage.style.display = "block";
+
+      setTimeout(function() {
+        alertMessage.style.display = "none";
+      }, 2000);
+    }
+
+    function resetForm() {
+      document.getElementById("nameInput").value = "";
+      document.getElementById("dateInput").value = "";
+      document.getElementById("amountInput").value = "";
+    }
+  </script>
+</head>
+<body>
+  <div class="alert-message" id="alertMessage"></div>
+
+  <div class="navbar">
+    <h1 class="navbar-title">Transaction Page</h1>
+    <div class="navbar-right">
+        <a href="index.html" class="button">Home</a>
+      <a href="about.html" class="button">About</a>
+      <a href="customer.html" class="button">Transaction</a>
+      <a href="contact.html" class="button">Contact</a>
+    </div>
+  </div>
+
+  <div class="custom-section">
+    <h2>Customer Transactions</h2>
+    <button class="button" onclick="openDialogueBox()">Add Transaction</button>
+  </div>
+
+  <div class="table-container">
+    <table class="transaction-table" id="transactionTable">
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table rows will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="dialogue-box" id="dialogueBox">
+    <div class="dialogue-content">
+      <span class="close-button" onclick="closeDialogueBox()">&times;</span>
+      <h2>Add Transaction</h2>
+      <form onsubmit="addTransaction(event)">
+        <div class="form-container">
+          <input type="date" id="dateInput" value="" required><br>
+          <input type="text" id="nameInput" placeholder="Name" required><br>
+          <input type="number" id="amountInput" placeholder="Amount" required><br>
+          <div class="button-container">
+            <button type="submit">Submit</button>
+            <button type="button" onclick="closeDialogueBox()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer>&copy; All rights reserved.</footer>
+</body>
+</html>
